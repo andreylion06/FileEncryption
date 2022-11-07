@@ -5,12 +5,12 @@
         private const string FileCryptExtension = ".crypt";
         private const string FileDecryptExtension = ".decrypt";
 
-        private string Password { get; set; }
         private string FileInPath { get; set; }
-        public FileEncription(string password, string fileInPath)
+        private string Password { get; set; }
+        public FileEncription(string fileInPath, string password)
         {
-            Password = password;
             FileInPath = fileInPath;
+            Password = password;
         }
 
         public void CryptOrUncrypt()
