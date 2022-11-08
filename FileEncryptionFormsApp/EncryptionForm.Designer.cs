@@ -36,6 +36,12 @@
             this.label_Password = new System.Windows.Forms.Label();
             this.textBox_Password = new System.Windows.Forms.TextBox();
             this.button_Start = new System.Windows.Forms.Button();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.groupBox_ProcessInfo = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label_Progress = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.groupBox_ProcessInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_Browse
@@ -51,10 +57,10 @@
             // 
             // textBox_FilePath
             // 
+            this.textBox_FilePath.Enabled = false;
             this.textBox_FilePath.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBox_FilePath.Location = new System.Drawing.Point(14, 30);
             this.textBox_FilePath.Name = "textBox_FilePath";
-            this.textBox_FilePath.ReadOnly = true;
             this.textBox_FilePath.Size = new System.Drawing.Size(430, 33);
             this.textBox_FilePath.TabIndex = 4;
             // 
@@ -84,13 +90,11 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
             this.radioButton1.Location = new System.Drawing.Point(126, 69);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(93, 29);
             this.radioButton1.TabIndex = 7;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Decrypt";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
@@ -116,19 +120,65 @@
             // button_Start
             // 
             this.button_Start.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_Start.Location = new System.Drawing.Point(12, 152);
+            this.button_Start.Location = new System.Drawing.Point(340, 81);
             this.button_Start.Name = "button_Start";
-            this.button_Start.Size = new System.Drawing.Size(534, 45);
+            this.button_Start.Size = new System.Drawing.Size(208, 56);
             this.button_Start.TabIndex = 10;
             this.button_Start.Text = "Start";
             this.button_Start.UseVisualStyleBackColor = true;
             this.button_Start.Click += new System.EventHandler(this.button_Start_Click);
             // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            // 
+            // groupBox_ProcessInfo
+            // 
+            this.groupBox_ProcessInfo.Controls.Add(this.label1);
+            this.groupBox_ProcessInfo.Controls.Add(this.label_Progress);
+            this.groupBox_ProcessInfo.Controls.Add(this.progressBar);
+            this.groupBox_ProcessInfo.Location = new System.Drawing.Point(14, 154);
+            this.groupBox_ProcessInfo.Name = "groupBox_ProcessInfo";
+            this.groupBox_ProcessInfo.Size = new System.Drawing.Size(534, 75);
+            this.groupBox_ProcessInfo.TabIndex = 11;
+            this.groupBox_ProcessInfo.TabStop = false;
+            this.groupBox_ProcessInfo.Text = "Process Info";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(370, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 17);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Appr. time:";
+            // 
+            // label_Progress
+            // 
+            this.label_Progress.AutoSize = true;
+            this.label_Progress.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_Progress.Location = new System.Drawing.Point(379, 22);
+            this.label_Progress.Name = "label_Progress";
+            this.label_Progress.Size = new System.Drawing.Size(63, 17);
+            this.label_Progress.TabIndex = 12;
+            this.label_Progress.Text = "Progress:";
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(15, 22);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(339, 38);
+            this.progressBar.TabIndex = 0;
+            // 
             // EncryptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 210);
+            this.ClientSize = new System.Drawing.Size(570, 243);
+            this.Controls.Add(this.groupBox_ProcessInfo);
             this.Controls.Add(this.button_Start);
             this.Controls.Add(this.textBox_Password);
             this.Controls.Add(this.label_Password);
@@ -139,6 +189,8 @@
             this.Controls.Add(this.label_FilePath);
             this.Name = "EncryptionForm";
             this.Text = "Form1";
+            this.groupBox_ProcessInfo.ResumeLayout(false);
+            this.groupBox_ProcessInfo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,5 +206,10 @@
         private Label label_Password;
         private TextBox textBox_Password;
         private Button button_Start;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private GroupBox groupBox_ProcessInfo;
+        private Label label1;
+        private Label label_Progress;
+        private ProgressBar progressBar;
     }
 }
