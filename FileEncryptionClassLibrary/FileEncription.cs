@@ -3,13 +3,14 @@
     public class FileEncription
     {
         private const string FileCryptExtension = ".crypt";
-        private const string FileDecryptExtension = ".decrypt";
 
-        private string FileInPath { get; set; }
+        public string FileInPath { get; private set; }
+        public string FileOutPath { get; private set; }
         private string Password { get; set; }
         public FileEncription(string fileInPath, string password)
         {
             FileInPath = fileInPath;
+            FileOutPath = GetOutPath(fileInPath);
             Password = password;
             Progress = 0;
         }
@@ -32,9 +33,8 @@
 
         public void CryptOrUncrypt()
         {
-            string fileOutPath = GetOutPath(FileInPath);
             FileStream fileStreamIn = File.OpenRead(FileInPath);
-            FileStream fileStreamOut = File.OpenWrite(fileOutPath);
+            FileStream fileStreamOut = File.OpenWrite(FileOutPath);
 
             int symbol, posPassword = 0;
             long posFile = 0, percentOfFileLength = fileStreamIn.Length / 100;
@@ -61,10 +61,23 @@
 
         private string GetOutPath(string fileInPath)
         {
-            if (fileInPath.Contains(FileCryptExtension))
-                return fileInPath.Remove(fileInPath.IndexOf(FileCryptExtension)) + FileDecryptExtension;
+            if (IsFileEncrypted(fileInPath))
+                return fileInPath.Remove(fileInPath.IndexOf(FileCryptExtension));
             else
                 return fileInPath + FileCryptExtension;
+        }
+
+        static public bool IsFileEncrypted(string fullFilePath)
+        {
+            return fullFilePath.Contains(FileCryptExtension);
+        }
+
+        public long GetSizeOfFile()
+        {
+            FileStream fileStreamIn = File.OpenRead(FileInPath);
+            long length = fileStreamIn.Length;
+            fileStreamIn.Close();
+            return length;
         }
     }
 }

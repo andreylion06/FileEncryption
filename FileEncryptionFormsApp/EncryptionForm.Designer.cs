@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button_Browse = new System.Windows.Forms.Button();
             this.textBox_FilePath = new System.Windows.Forms.TextBox();
             this.label_FilePath = new System.Windows.Forms.Label();
-            this.radioButton_Encrypt = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.label_Password = new System.Windows.Forms.Label();
             this.textBox_Password = new System.Windows.Forms.TextBox();
             this.button_Start = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.groupBox_ProcessInfo = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label_Time = new System.Windows.Forms.Label();
             this.label_Progress = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.groupBox_ProcessInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,35 +74,11 @@
             this.label_FilePath.TabIndex = 3;
             this.label_FilePath.Text = "File path:";
             // 
-            // radioButton_Encrypt
-            // 
-            this.radioButton_Encrypt.AutoSize = true;
-            this.radioButton_Encrypt.Checked = true;
-            this.radioButton_Encrypt.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.radioButton_Encrypt.Location = new System.Drawing.Point(12, 69);
-            this.radioButton_Encrypt.Name = "radioButton_Encrypt";
-            this.radioButton_Encrypt.Size = new System.Drawing.Size(90, 29);
-            this.radioButton_Encrypt.TabIndex = 6;
-            this.radioButton_Encrypt.TabStop = true;
-            this.radioButton_Encrypt.Text = "Encrypt";
-            this.radioButton_Encrypt.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.radioButton1.Location = new System.Drawing.Point(126, 69);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(93, 29);
-            this.radioButton1.TabIndex = 7;
-            this.radioButton1.Text = "Decrypt";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
             // label_Password
             // 
             this.label_Password.AutoSize = true;
             this.label_Password.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_Password.Location = new System.Drawing.Point(14, 107);
+            this.label_Password.Location = new System.Drawing.Point(11, 72);
             this.label_Password.Name = "label_Password";
             this.label_Password.Size = new System.Drawing.Size(95, 25);
             this.label_Password.TabIndex = 8;
@@ -110,19 +86,22 @@
             // 
             // textBox_Password
             // 
+            this.textBox_Password.Enabled = false;
             this.textBox_Password.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_Password.Location = new System.Drawing.Point(115, 104);
+            this.textBox_Password.Location = new System.Drawing.Point(112, 69);
             this.textBox_Password.Name = "textBox_Password";
             this.textBox_Password.PasswordChar = '*';
-            this.textBox_Password.Size = new System.Drawing.Size(206, 33);
+            this.textBox_Password.Size = new System.Drawing.Size(222, 33);
             this.textBox_Password.TabIndex = 9;
+            this.textBox_Password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Password_KeyPress);
             // 
             // button_Start
             // 
+            this.button_Start.Enabled = false;
             this.button_Start.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button_Start.Location = new System.Drawing.Point(340, 81);
+            this.button_Start.Location = new System.Drawing.Point(340, 69);
             this.button_Start.Name = "button_Start";
-            this.button_Start.Size = new System.Drawing.Size(208, 56);
+            this.button_Start.Size = new System.Drawing.Size(208, 33);
             this.button_Start.TabIndex = 10;
             this.button_Start.Text = "Start";
             this.button_Start.UseVisualStyleBackColor = true;
@@ -136,25 +115,25 @@
             // 
             // groupBox_ProcessInfo
             // 
-            this.groupBox_ProcessInfo.Controls.Add(this.label1);
+            this.groupBox_ProcessInfo.Controls.Add(this.label_Time);
             this.groupBox_ProcessInfo.Controls.Add(this.label_Progress);
             this.groupBox_ProcessInfo.Controls.Add(this.progressBar);
-            this.groupBox_ProcessInfo.Location = new System.Drawing.Point(14, 154);
+            this.groupBox_ProcessInfo.Location = new System.Drawing.Point(14, 108);
             this.groupBox_ProcessInfo.Name = "groupBox_ProcessInfo";
             this.groupBox_ProcessInfo.Size = new System.Drawing.Size(534, 75);
             this.groupBox_ProcessInfo.TabIndex = 11;
             this.groupBox_ProcessInfo.TabStop = false;
             this.groupBox_ProcessInfo.Text = "Process Info";
             // 
-            // label1
+            // label_Time
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(370, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 17);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Appr. time:";
+            this.label_Time.AutoSize = true;
+            this.label_Time.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_Time.Location = new System.Drawing.Point(403, 43);
+            this.label_Time.Name = "label_Time";
+            this.label_Time.Size = new System.Drawing.Size(66, 17);
+            this.label_Time.TabIndex = 13;
+            this.label_Time.Text = "Time: 0.0s";
             // 
             // label_Progress
             // 
@@ -173,17 +152,19 @@
             this.progressBar.Size = new System.Drawing.Size(339, 38);
             this.progressBar.TabIndex = 0;
             // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // EncryptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 243);
+            this.ClientSize = new System.Drawing.Size(570, 193);
             this.Controls.Add(this.groupBox_ProcessInfo);
             this.Controls.Add(this.button_Start);
             this.Controls.Add(this.textBox_Password);
             this.Controls.Add(this.label_Password);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.radioButton_Encrypt);
             this.Controls.Add(this.button_Browse);
             this.Controls.Add(this.textBox_FilePath);
             this.Controls.Add(this.label_FilePath);
@@ -201,15 +182,14 @@
         private Button button_Browse;
         private TextBox textBox_FilePath;
         private Label label_FilePath;
-        private RadioButton radioButton_Encrypt;
-        private RadioButton radioButton1;
         private Label label_Password;
         private TextBox textBox_Password;
         private Button button_Start;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private GroupBox groupBox_ProcessInfo;
-        private Label label1;
+        private Label label_Time;
         private Label label_Progress;
         private ProgressBar progressBar;
+        private System.Windows.Forms.Timer timer;
     }
 }
