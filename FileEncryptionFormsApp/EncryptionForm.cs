@@ -63,7 +63,7 @@ namespace FileEncryptionFormsApp
                 timer.Stop();
                 MessageBox.Show(
                     $"Name: {encr.FileOutPath}\n" +
-                    $"Size: {Math.Round(encr.GetSizeOfFile() / 1024 / 1024.0, 2)}\n " +
+                    $"Size: {Math.Round(encr.GetSizeOfFile() / 1024 / 1024.0, 2)}mb\n" +
                     $"Time: {Math.Round(time, 1)}s", 
                     "Process Information", 
                     MessageBoxButtons.OK);
